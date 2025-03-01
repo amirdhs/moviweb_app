@@ -1,0 +1,22 @@
+              <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Movie</title>
+      <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Update Movie</h1>
+    <form method="POST">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" value="{{ movie.title }}" required>
+        <label for="director">Director:</label>
+        <input type="text" id="director" name="director" value="{{ movie.director }}" required>
+        <label for="year">Year:</label>
+        <input type="number" id="year" name="year" value="{{ movie.year }}" required>
+        <label for="rating">Rating:</label>
+        <input type="number" step="0.1" id="rating" name="rating" value="{{ movie.rating }}" required>
+        <button type="submit">Update Movie</button>
+    </form>
+</body>
+</html>

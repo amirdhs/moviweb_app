@@ -1,0 +1,21 @@
+              <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movies</title>
+      <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Movies</h1>
+    <ul>
+        {% for movie in movies %}
+            <li>
+                {{ movie.title }} ({{ movie.year }}) - {{ movie.director }} - Rating: {{ movie.rating }}
+                <a href="{{ url_for('update_movie', user_id=user_id, movie_id=movie.id) }}">Edit</a>
+                <a href="{{ url_for('delete_movie', user_id=user_id, movie_id=movie.id) }}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('add_movie', user_id=user_id) }}">Add Movie</a>
+</body>
+</html>

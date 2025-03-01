@@ -1,0 +1,16 @@
+              <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Movie</title>
+      <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Add Movie</h1>
+    <form method="POST">
+        <label for="title">Movie Title:</label>
+        <input type="text" id="title" name="title" required>
+        <button type="submit">Add Movie</button>
+    </form>
+</body>
+</html>

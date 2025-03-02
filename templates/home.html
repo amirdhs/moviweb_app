@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoviWeb App - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+<header class="header">
+    <div class="header-content">
+        <h1>MoviWeb App</h1>
+        <nav>
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('list_users') }}">Users</a>
+            <a href="{{ url_for('add_user') }}">Add User</a>
+        </nav>
+
+        <form action="{{ url_for('search_movies') }}" method="GET" class="search-form">
+            <input type="text" name="query" placeholder="Search for movies..." required>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+</header>
+
+    <main class="main-content">
+        <section class="featured-movies">
+            <h2>Featured Movies</h2>
+            <div class="movie-grid">
+                {% for movie in featured_movies %}
+                    <div class="movie-card">
+                        <img src="{{ movie.poster_url }}" alt="{{ movie.name }}" class="movie-poster">
+                        <div class="movie-info">
+                            <h3>{{ movie.name }}</h3>
+                            <p>{{ movie.year }} - {{ movie.director }}</p>
+                            <p>Rating: {{ movie.rating }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 MoviWeb App. All rights reserved.</p>
+    </footer>
+</body>
+</html>

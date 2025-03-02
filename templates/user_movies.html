@@ -1,21 +1,33 @@
-              <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Movies</title>
-      <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ user.name }}'s Movies - MoviWeb App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>Movies</h1>
-    <ul>
+    <header>
+        <h1>{{ user.name }}'s Favorite Movies</h1>
+        <nav>
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('list_users') }}">Users</a>
+            <a href="{{ url_for('add_movie', user_id=user.id) }}">Add Movie</a>
+        </nav>
+    </header>
+<main>
+    <div class="movie-grid">
         {% for movie in movies %}
-            <li>
-                {{ movie.title }} ({{ movie.year }}) - {{ movie.director }} - Rating: {{ movie.rating }}
-                <a href="{{ url_for('update_movie', user_id=user_id, movie_id=movie.id) }}">Edit</a>
-                <a href="{{ url_for('delete_movie', user_id=user_id, movie_id=movie.id) }}">Delete</a>
-            </li>
+            <div class="movie-card">
+                <img src="{{ movie.poster_url }}" alt="{{ movie.name }}" class="movie-poster">
+                <h3>{{ movie.name }}</h3>
+                <p>{{ movie.year }} - {{ movie.director }}</p>
+                <p>Rating: {{ movie.rating }}</p>
+                <a href="{{ url_for('update_movie', user_id=user.id, movie_id=movie.id) }}">Edit</a>
+                <a href="{{ url_for('delete_movie', user_id=user.id, movie_id=movie.id) }}">Delete</a>
+            </div>
         {% endfor %}
-    </ul>
-    <a href="{{ url_for('add_movie', user_id=user_id) }}">Add Movie</a>
+    </div>
+</main>
 </body>
 </html>
